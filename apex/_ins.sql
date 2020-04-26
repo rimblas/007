@@ -8,10 +8,10 @@ begin
   select workspace_id
   into l_workspace_id
   from apex_workspaces
-  where workspace = 'WORKSPACE_NAME';
+  where workspace = 'JRIMBLAS';
 
   apex_application_install.set_application_id(100);
-  apex_application_install.set_schema('APP_SCHEMA');
+  apex_application_install.set_schema('JORGE');
   apex_application_install.set_workspace_id(l_workspace_id);
   apex_application_install.generate_offset;
 end;
