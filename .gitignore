@@ -9,3 +9,5 @@ logs
 *.log
 *.map
 /www/dist/css/app.css.map
+bin
+tmp
