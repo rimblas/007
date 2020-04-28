@@ -28,12 +28,13 @@ prompt APPLICATION 100 - Todos
 -- Application Export:
 --   Application:     100
 --   Name:            Todos
---   Date and Time:   11:49 Sunday April 26, 2020
+--   Date and Time:   21:50 Monday April 27, 2020
 --   Exported By:     JORGE@RIMBLAS.COM
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                      7
 --       Items:                   21
+--       Validations:              1
 --       Processes:               10
 --       Regions:                 13
 --       Buttons:                 15
@@ -114,7 +115,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'Todos'
 ,p_last_updated_by=>'JORGE@RIMBLAS.COM'
-,p_last_upd_yyyymmddhh24miss=>'20200426114719'
+,p_last_upd_yyyymmddhh24miss=>'20200427215015'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -10761,7 +10762,7 @@ wwv_flow_api.create_user_interface(
 ,p_navigation_list_id=>wwv_flow_api.id(4003217458482148)
 ,p_navigation_list_position=>'SIDE'
 ,p_navigation_list_template_id=>wwv_flow_api.id(4108458360482301)
-,p_nav_list_template_options=>'#DEFAULT#:t-TreeNav--styleA:js-navCollapsed--hidden'
+,p_nav_list_template_options=>'#DEFAULT#:js-defaultCollapsed:js-navCollapsed--default:t-TreeNav--styleA'
 ,p_css_file_urls=>'#APP_IMAGES#app-icon.css?version=#APP_VERSION#'
 ,p_nav_bar_type=>'LIST'
 ,p_nav_bar_list_id=>wwv_flow_api.id(4141070643482449)
@@ -11059,7 +11060,7 @@ wwv_flow_api.create_page(
 ,p_dialog_chained=>'N'
 ,p_protection_level=>'C'
 ,p_last_updated_by=>'JORGE@RIMBLAS.COM'
-,p_last_upd_yyyymmddhh24miss=>'20200426114718'
+,p_last_upd_yyyymmddhh24miss=>'20200427215015'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(4218177695482928)
@@ -11499,6 +11500,19 @@ wwv_flow_api.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_is_persistent=>'N'
 ,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(4901552993527003)
+,p_validation_name=>'Prevent Delete'
+,p_validation_sequence=>10
+,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select 1',
+'  from todos',
+' where assignee_id = :P3_ID'))
+,p_validation_type=>'NOT_EXISTS'
+,p_error_message=>'You can''t delete an Assignee while there are To-Dos'
+,p_when_button_pressed=>wwv_flow_api.id(4226044681482956)
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(4224536521482951)
