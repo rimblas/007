@@ -3,6 +3,7 @@
 bin
 node_modules
 www/dist
+*.screenflow
 
 # Logs
 logs
